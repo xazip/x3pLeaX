@@ -68,8 +68,12 @@ x3p_surface_rescale <- function(df, obtain = c("minimum", "maximum", "both", "re
 
 
 
-#'
+#' Internal helper function
+#' 
+#' Oh why does R not just ignore these?
+#' @importFrom x3ptools x3p_to_df
 x3p_lea_df <- function(df){
+  no_striae_stats <- NULL # to avoid complaints from R CMD CHECK
 
   for(i in 1:nrow(df)){
 

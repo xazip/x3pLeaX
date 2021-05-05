@@ -2,6 +2,8 @@
 #'
 #' @param Learning_rate learning rate speed
 #' @param decay weighted decay rate
+#' @return CNN model as returned from keras
+#' @import keras
 #' @export
 create_residual_3dCNN <- function(Learning_rate = 0.1, decay = FALSE){
 

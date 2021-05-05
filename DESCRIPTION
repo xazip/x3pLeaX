@@ -10,6 +10,11 @@ Authors@R:
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
+Depends: R (>= 4.0)
+Imports: keras (>= 2.3.0.0),
+         dplyr (>= 1.0.5),
+         x3ptools
+Remotes: heike/x3ptools         
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

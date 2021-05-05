@@ -11,6 +11,9 @@ create_residual_3dCNN(Learning_rate = 0.1, decay = FALSE)
 
 \item{decay}{weighted decay rate}
 }
+\value{
+CNN model as returned from keras
+}
 \description{
 Create CNN architecture
 }

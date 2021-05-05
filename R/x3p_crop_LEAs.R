@@ -9,6 +9,7 @@
 #' @param multiple clarify whether user is working with a single 'x3p' object or multiple in a tibble style dataframe
 #' @param select_col if multiple = TRUE, location of the x3p objects
 #' @return A list containig cropped x3ps and original indexes if specified
+#' @importFrom dplyr filter
 #' @export
 x3p_crop_LEAs <- function(df, obtain_index = TRUE, value, multiple = FALSE, select_col){
 
@@ -35,7 +36,7 @@ x3p_crop_LEAs <- function(df, obtain_index = TRUE, value, multiple = FALSE, sele
 
       grid_outline <- expand.grid(grid_lengths_x, grid_lengths_y) # Grid outline
 
-      grid_outline <- grid_outline %>% filter(Var1 >= 0 & Var2 >= 0)
+      grid_outline <- grid_outline %>% dplyr::filter(Var1 >= 0 & Var2 >= 0)
 
       df$crop_storage[[i]] <- map2(.x = grid_outline$Var1 ,
                                    .y = grid_outline$Var2 ,

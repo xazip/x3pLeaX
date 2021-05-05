@@ -10,6 +10,7 @@
 #' @param multiple clarify whether user is working with a single 'x3p' object or multiple in a tibble style dataframe
 #' @param select_col if multiple = TRUE, location of the x3p objects
 #' @return 'x3p' object with altered mask
+#' @importFrom grDevices as.raster
 #' @export
 x3p_raster_relabel <- function(df, mask_1, mask_2, color_new, annotation_new, multiple = FALSE, select_col){
   if(multiple == TRUE){
