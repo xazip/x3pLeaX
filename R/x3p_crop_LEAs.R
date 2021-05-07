@@ -13,6 +13,9 @@
 #' @export
 x3p_crop_LEAs <- function(df, obtain_index = TRUE, value, multiple = FALSE, select_col){
 
+  Var1 <- NULL
+  Var2 <- NULL
+
   f = function(x, n){
     x - 128*(1:n)
 
@@ -38,7 +41,7 @@ x3p_crop_LEAs <- function(df, obtain_index = TRUE, value, multiple = FALSE, sele
 
       grid_outline <- grid_outline %>% dplyr::filter(Var1 >= 0 & Var2 >= 0)
 
-      df$crop_storage[[i]] <- map2(.x = grid_outline$Var1 ,
+      df$crop_storage[[i]] <- purrr::map2(.x = grid_outline$Var1 ,
                                    .y = grid_outline$Var2 ,
                                    .f = x3ptools::x3p_crop, x3p = df[[select_col]][[i]],
                                    width = value,
@@ -66,7 +69,7 @@ x3p_crop_LEAs <- function(df, obtain_index = TRUE, value, multiple = FALSE, sele
 
       df$original_indexes[[i]] <- grid_outline
 
-      df$crop_storage[[i]] <- map2(.x = grid_outline$Var1 ,
+      df$crop_storage[[i]] <- purrr::map2(.x = grid_outline$Var1 ,
                                    .y = grid_outline$Var2 ,
                                    .f = x3ptools::x3p_crop, x3p = df[[select_col]][[i]],
                                    width = value,
@@ -96,7 +99,7 @@ x3p_crop_LEAs <- function(df, obtain_index = TRUE, value, multiple = FALSE, sele
 
     index <- grid_outline
 
-    crop_storage <- map2(.x = grid_outline$Var1 ,
+    crop_storage <- purrr::map2(.x = grid_outline$Var1 ,
                                  .y = grid_outline$Var2 ,
                                  .f = x3ptools::x3p_crop, x3p = df,
                                  width = value,

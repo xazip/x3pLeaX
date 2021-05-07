@@ -11,9 +11,11 @@
 #' @export
 x3p_get_labels <- function(df, decision_ratio, multiple = FALSE, select_col){
 
+  Freq <- NULL
+
   if(multiple == TRUE){
   if(select_col %in% colnames(df)){
-  df <- unnest(df, select_col)
+  df <- tidyr::unnest(df, select_col)
 
   for(i in 1:nrow(df)){
 

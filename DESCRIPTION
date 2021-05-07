@@ -13,7 +13,11 @@ License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
 Depends: R (>= 4.0)
 Imports: keras (>= 2.3.0.0),
          dplyr (>= 1.0.5),
-         x3ptools
+         tidyr (>= 1.1.2),
+         x3ptools,
+         abind (>= 1.4-5),
+         purrr (>= 0.3.4),
+         tensorflow (>= 2.2.0)
 Remotes: heike/x3ptools         
 Encoding: UTF-8
 LazyData: true

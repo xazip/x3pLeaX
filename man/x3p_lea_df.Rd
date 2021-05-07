@@ -2,10 +2,13 @@
 % Please edit documentation in R/x3p_surf_stat_rescale.R
 \name{x3p_lea_df}
 \alias{x3p_lea_df}
-\title{Internal helper function}
+\title{This function generates even more stats user for heuristic statistics and generating plots}
 \usage{
 x3p_lea_df(df)
 }
+\arguments{
+\item{df}{tibble style dataframe containing 'x3p' objects}
+}
 \description{
-Oh why does R not just ignore these?
+This function generates even more stats user for heuristic statistics and generating plots
 }
