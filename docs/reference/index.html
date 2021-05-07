@@ -44,8 +44,6 @@
 
 
 
-
-
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -57,16 +55,9 @@
 
 
 
-
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -87,6 +78,12 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
@@ -133,19 +130,32 @@
         <td>
           <p><code><a href="callback_lr_init.html">callback_lr_init()</a></code> </p>
         </td>
-        <td><p>To be continued</p></td>
+        <td><p>This function should be used with keras callback_lambda()
+Use for metrics on each epoch, iteration, batch
+When training a model, each epoch has 'n' iterations, where each iteration has 'k' batches</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="callback_lr_log.html">callback_lr_log()</a></code> </p>
         </td>
-        <td><p>To be continued</p></td>
+        <td><p>This function should be used with keras callback_lambda
+Use for metrics on each epoch, iteration, batch
+When training a model, each epoch has 'n' iterations, where each iteration has 'k' batches</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="callback_lr_set.html">callback_lr_set()</a></code> </p>
         </td>
-        <td><p>To be continued</p></td>
+        <td><p>This function should be used with keras callback_lambda
+Use for metrics on each epoch, iteration, batch
+When training a model, each epoch has 'n' iterations, where each iteration has 'k' batches</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_lr_rate_parameters_exp.html">create_lr_rate_parameters_exp()</a></code> </p>
+        </td>
+        <td><p>This function generates parameters for learning rate callbacks defined by user input
+of number of epochs, the max learning rate willing, tensor used as input for ML or DL model, growth constant, and batch_size</p></td>
       </tr><tr>
         
         <td>
@@ -181,7 +191,7 @@
         <td>
           <p><code><a href="x3p_lea_df.html">x3p_lea_df()</a></code> </p>
         </td>
-        <td><p>Internal helper function</p></td>
+        <td><p>This function generates even more stats user for heuristic statistics and generating plots</p></td>
       </tr><tr>
         
         <td>
@@ -227,11 +237,11 @@ Rescale Surface of an x3p object</p></td>
 
       <footer>
       <div class="copyright">
-  <p><p>Developed by First Last.</p></p>
+  <p>Developed by First Last.</p>
 </div>
 
 <div class="pkgdown">
-  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -239,8 +249,6 @@ Rescale Surface of an x3p object</p></td>
 
   
 
-
-  
 
   </body>
 </html>
