@@ -22,7 +22,7 @@ x3p_get_labels <- function(df, decision_ratio, multiple = FALSE, select_col){
     df$labels[[i]] <- unique(purrr::pluck(df[[select_col]][[i]], 6))  #store all annotations in a crop in a list
 
     df$label_chosen[[i]] <- data.frame(prop.table(table(df[[select_col]][[i]]$mask))) %>%
-      filter(Freq > decision_ratio | Freq == max(Freq)) %>% {as.character(.$Var1)} #Store the majority annotation for a crop
+      filter(Freq > decision_ratio | Freq == max(Freq)) %>% {as.character(.$Var1[1])} #Store the majority annotation for a crop
 
       }
     } else {stop("Error: column selected containing x3p object does not exist")}
@@ -31,7 +31,7 @@ x3p_get_labels <- function(df, decision_ratio, multiple = FALSE, select_col){
     labels <- unique(purrr::pluck(df, 6))
 
     label_chosen <- c(prop.table(table(df$mask))) %>%
-      filter(Freq > decision_ratio | Freq == max(Freq)) %>% {as.character(.$Var1)}
+      filter(Freq > decision_ratio | Freq == max(Freq)) %>% {as.character(.$Var1[1])}
 
     label_info <- list(labels, label_chosen)
 
