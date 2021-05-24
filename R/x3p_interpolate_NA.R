@@ -12,54 +12,67 @@ x3p_interpolate_NA <- function(df, multiple = FALSE, select_col){
   if(multiple == TRUE){
     if(select_col %in% colnames(df)){
       for(i in 1:nrow(df)){
-
-        pad_surf <- rbind(0, cbind(0, df[[select_col]][[i]]$surface.matrix, 0), 0)
-
-        for(j in 1:nrow(df[[select_col]][[i]]$surface.matrix)){
-          for(k in 1:ncol(df[[select_col]][[i]]$surface.matrix)){
-
-            if(is.na(pad_surf[j,k]) &
-
-               any(!is.na(c(pad_surf[j-1, k-1], pad_surf[j-1, k], pad_surf[j-1, k+1], pad_surf[j, k-1], pad_surf[j+1, k-1], pad_surf[j+1, k], pad_surf[j+1, k+1])))){
-
-              pad_surf[j,k] <- mean(c(pad_surf[j-1, k-1], pad_surf[j-1, k], pad_surf[j-1, k+1], pad_surf[j, k-1], pad_surf[j+1, k-1], pad_surf[j+1, k], pad_surf[j+1, k+1]), na.rm = TRUE)
-
+        possibleError <- tryCatch({
+          
+          pad_surf <- rbind(0, cbind(0, df[[select_col]][[i]]$surface.matrix, 0), 0)
+          
+          for(j in 1:nrow(df[[select_col]][[i]]$surface.matrix)){
+            for(k in 1:ncol(df[[select_col]][[i]]$surface.matrix)){
+              
+              if(is.na(pad_surf[j,k]) &
+                 
+                 any(!is.na(c(pad_surf[j-1, k-1], pad_surf[j-1, k], pad_surf[j-1, k+1], pad_surf[j, k-1], pad_surf[j+1, k-1], pad_surf[j+1, k], pad_surf[j+1, k+1])))){
+                
+                pad_surf[j,k] <- mean(c(pad_surf[j-1, k-1], pad_surf[j-1, k], pad_surf[j-1, k+1], pad_surf[j, k-1], pad_surf[j+1, k-1], pad_surf[j+1, k], pad_surf[j+1, k+1]), na.rm = TRUE)
+                
+              }
+              
             }
-
           }
+          
+          pad_surfx <- pad_surf[-c(min(seq(nrow(pad_surf))), max(seq(nrow(pad_surf)))), -c(min(seq(ncol(pad_surf))), max(seq(ncol(pad_surf))))]
+          pad_surfx[, ncol(pad_surfx) ] <- pad_surfx[, ncol(pad_surfx) - 1]
+          pad_surfx[nrow(pad_surfx), ] <- pad_surfx[nrow(pad_surfx)-1, ]
+          df[[select_col]][[i]]$surface.matrix <- pad_surfx
+          
+        },
+        
+        error = function(e){
+          e
+          print(paste("Possible Error found at iteration number ", i, " Please investigate", "... moving to next iteration", sep = ""))
         }
-
-        pad_surfx <- pad_surf[-c(min(seq(nrow(pad_surf))), max(seq(nrow(pad_surf)))), -c(min(seq(ncol(pad_surf))), max(seq(ncol(pad_surf))))]
-        pad_surfx[, ncol(pad_surfx) ] <- pad_surfx[, ncol(pad_surfx) - 1]
-        pad_surfx[nrow(pad_surfx), ] <- pad_surfx[nrow(pad_surfx)-1, ]
-        df[[select_col]][[i]]$surface.matrix <- pad_surfx
+        
+        )
+        
+        if(inherits(possibleError, "error")) next
+        
       }
     } else {stop("Error: column selected containing x3p object does not exist")}
-
   } else if(multiple == FALSE){
-
+    
     pad_surf <- rbind(0, cbind(0, df$surface.matrix, 0), 0)
-
+    
     for(j in 1:nrow(df$surface.matrix)){
       for(k in 1:ncol(df$surface.matrix)){
-
+        
         if(is.na(pad_surf[j,k]) &
-
+           
            any(!is.na(c(pad_surf[j-1, k-1], pad_surf[j-1, k], pad_surf[j-1, k+1], pad_surf[j, k-1], pad_surf[j+1, k-1], pad_surf[j+1, k], pad_surf[j+1, k+1])))){
-
+          
           pad_surf[j,k] <- mean(c(pad_surf[j-1, k-1], pad_surf[j-1, k], pad_surf[j-1, k+1], pad_surf[j, k-1], pad_surf[j+1, k-1], pad_surf[j+1, k], pad_surf[j+1, k+1]), na.rm = TRUE)
-
+          
         }
-
+        
       }
     }
-
+    
     pad_surfx <- pad_surf[-c(min(seq(nrow(pad_surf))), max(seq(nrow(pad_surf)))), -c(min(seq(ncol(pad_surf))), max(seq(ncol(pad_surf))))]
     pad_surfx[, ncol(pad_surfx) ] <- pad_surfx[, ncol(pad_surfx) - 1]
     pad_surfx[nrow(pad_surfx), ] <- pad_surfx[nrow(pad_surfx)-1, ]
     df$surface.matrix <- pad_surfx
-
+    
   }
-
+  
   return(df)
+  
 }
